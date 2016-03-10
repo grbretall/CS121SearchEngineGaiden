@@ -62,7 +62,7 @@ public class DBConnector
 	 */
 	public String findUrlIdByWordId(long wordId) throws SQLException
 	{
-		String queryString = "select group_concat(u.id), w.word from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
+		String queryString = "select group_concat(u.url), w.word from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
 				+ "&& w.id = ? group by w.id;";
 		PreparedStatement select = connection.prepareStatement(queryString);
 		select.setLong(1, wordId);

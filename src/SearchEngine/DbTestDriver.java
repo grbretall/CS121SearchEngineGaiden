@@ -5,7 +5,8 @@ import java.sql.SQLException;
 
 public class DbTestDriver {
 
-	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+	public static void main(String[] args) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException 
+	{
 		// TODO Auto-generated method stub
 		DBConnector db = new DBConnector();
 		int wordId = db.findWordIdByWord("science");
