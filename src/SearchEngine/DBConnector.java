@@ -54,26 +54,17 @@ public class DBConnector
 		return 0;
 	}
 	
-	/*
-	 * select group_concat(u.id), w.word
-	 * from words w, urls u, words_in_url wiu
-	 * where w.id = wiu.word_id && u.id = wiu.url_id && w.id = 122
-	 * group by w.id;
-	 */
-	public String findUrlIdByWordId(long wordId) throws SQLException
+	
+	public ResultSet findUrlIdByWordId(long wordId) throws SQLException
 	{
-		String queryString = "select group_concat(u.url), w.word from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
+		String queryString = "select u.url, w.word, wiu.frequency from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
 				+ "&& w.id = ? group by w.id;";
 		PreparedStatement select = connection.prepareStatement(queryString);
 		select.setLong(1, wordId);
 		ResultSet result = select.executeQuery();
-		while(result.next())
-		{
-			return result.getString(1);
-		}
-		System.out.println("Nothing here");
-		return null;
+		return result;
 	}
+	
 	
 
 }
