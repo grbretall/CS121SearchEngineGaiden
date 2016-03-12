@@ -38,10 +38,8 @@ public class DBConnector
 	}
 	public int findWordIdByWord(String word) throws SQLException
 	{
-		//String queryString = "SELECT * FROM words WHERE words.word = '"+word+"';";
 		String queryString = "SELECT * FROM words WHERE words.word = ?;";
 		
-		//Statement select = connection.createStatement();
 		PreparedStatement select = connection.prepareStatement(queryString);
 		select.setString(1, word);
 		ResultSet result = select.executeQuery();
@@ -57,8 +55,8 @@ public class DBConnector
 	
 	public ResultSet findUrlIdByWordId(long wordId) throws SQLException
 	{
-		String queryString = "select u.url, w.word, wiu.frequency from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
-				+ "&& w.id = ? group by w.id;";
+		String queryString = "select u.url, wiu.frequency, w.occurences from words w, urls u, words_in_url wiu where w.id = wiu.word_id && u.id = wiu.url_id "
+				+ "&& w.id = ?;";
 		PreparedStatement select = connection.prepareStatement(queryString);
 		select.setLong(1, wordId);
 		ResultSet result = select.executeQuery();
