@@ -71,7 +71,7 @@ public class SearchEngine
 		{
 			for(int i = 0; i < urlResultsList.size(); i++)
 			{
-				returnString += urlResultsList.get(i).getText() + " \n";
+				returnString += urlResultsList.get(i).getText() + " " + urlResultsList.get(i).getFrequency()+ " \n";
 				numDocs++;
 			}
 		}
@@ -79,7 +79,7 @@ public class SearchEngine
 		{
 			for(int i = 0; i < 100; i++)
 			{
-				returnString += urlResultsList.get(i).getText() +" "+ urlResultsList.get(i).getFrequency()+ " \n";
+				returnString += urlResultsList.get(i).getText() + " " + urlResultsList.get(i).getFrequency()+ " \n";
 				numDocs++;
 			}
 		}
